@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour {
     private Vector3 movement;
-    public int speed = 0;
+    public float speed ;
+    public float jumpForce;
+
+    bool isjumping;
     
     private Rigidbody2D rb;
     
@@ -16,10 +19,12 @@ public class Controller : MonoBehaviour {
     }
     private void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        float moveHorizontal = Input.GetAxis("Horizontal")*speed;
+        //float moveVertical = Input.GetAxis("Vertical");
+        Vector2 movement = new Vector2(moveHorizontal, 0);
         rb.AddForce(movement);
+
+        jump();
     }
 
     // Update is called once per frame
@@ -29,5 +34,25 @@ public class Controller : MonoBehaviour {
         //movement = transform.TransformDirection(movement);
         //movement *= speed;
 
+    }
+
+    void jump()
+    {
+        if(Input.GetKeyDown(KeyCode.Space)&& !isjumping)
+        {
+            isjumping = true;
+
+            rb.AddForce(new Vector2(movement.x, jumpForce));
+        }
+    }
+
+    void OnCollision2DEnter(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isjumping = false;
+
+            movement = Vector2.zero;
+        }
     }
 }
