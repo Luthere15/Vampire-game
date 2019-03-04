@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 386132503}
   - component: {fileID: 386132505}
   - component: {fileID: 386132504}
+  - component: {fileID: 386132507}
   - component: {fileID: 386132506}
   m_Layer: 0
   m_Name: ice vamp
@@ -205,7 +206,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 386132501}
   m_LocalRotation: {x: 0.078459114, y: -0, z: -0, w: 0.99691737}
-  m_LocalPosition: {x: 1.97, y: 0.53, z: -8}
+  m_LocalPosition: {x: 1.97, y: -1, z: -8.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1909066280}
@@ -268,9 +269,9 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.08141613}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -281,7 +282,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 1.0772839}
   m_EdgeRadius: 0
 --- !u!50 &386132505
 Rigidbody2D:
@@ -302,7 +303,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 2
+  m_Constraints: 6
 --- !u!114 &386132506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,9 +312,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 386132501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed5a7ce56757ef84e9d7e361fff64b72, type: 3}
+  m_Script: {fileID: 11500000, guid: 27a89731aa821da4e97e2ab16295b525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &386132507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 386132501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b0ea9abea873f47bcb2058139a5edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fissure: {fileID: 1843019532050574, guid: dcac63bd365dac049b69e526ec6aea34, type: 2}
+  fissureSpeed: 20
+  speed: 1
+  leftAndRightEdge: 1
+  chanceToChangeDirections: 0.1
+  secondsBetweenFissureattack: 1
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +423,7 @@ GameObject:
   - component: {fileID: 1268044650}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,7 +519,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1268044650
 BoxCollider2D:
   m_ObjectHideFlags: 0

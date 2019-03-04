@@ -52,7 +52,14 @@ public class Controller : MonoBehaviour {
         {
             isjumping = false;
 
-            movement = Vector2.zero;
+            //rb.AddForce(new Vector2(0, 0));
+        }
+        //GameObject collidedWith = other.gameObject;
+
+
+        if(other.gameObject.tag=="fissure")
+        {
+            Destroy(other.gameObject);
         }
     }
 }
