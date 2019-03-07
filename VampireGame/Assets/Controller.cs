@@ -3,19 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
-    private Vector3 movement;
+    private Vector2 movement;
     public float speed ;
     public float jumpForce;
+    public float showDamageDuration= 100f;
+    public bool showingDamage = false;
+    public float damageDoneTime= 5f;
 
-    bool isjumping;
+    public bool isjumping;
     
     private Rigidbody2D rb;
-    
+
+    private SpriteRenderer damage;
+    private Rigidbody2D freeze;
+
+    Rigidbody2D constraints;
+
+
 
     // Use this for initialization
     void Start () {
         
         rb = GetComponent<Rigidbody2D>();
+
+        damage = GetComponent<SpriteRenderer>();
+
+        constraints = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
     {
@@ -23,16 +36,18 @@ public class Controller : MonoBehaviour {
         //float moveVertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(moveHorizontal, 0);
         rb.AddForce(movement);
+        //constraints.constraints = RigidbodyConstraints2D.None;
 
         jump();
     }
 
     // Update is called once per frame
     void Update () {
-
-        //movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
-        //movement = transform.TransformDirection(movement);
-        //movement *= speed;
+        // constraints.constraints = RigidbodyConstraints2D.FreezePositionX;
+        if (showingDamage == true && Time.time > damageDoneTime)
+        {
+            unShowDamage();
+        }
 
     }
 
@@ -46,20 +61,39 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    void OnCollision2DEnter(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
+        
         if (other.gameObject.CompareTag("Ground"))
         {
             isjumping = false;
 
-            //rb.AddForce(new Vector2(0, 0));
+            
         }
-        //GameObject collidedWith = other.gameObject;
 
 
-        if(other.gameObject.tag=="fissure")
+        if (other.gameObject.tag == "fissure")
         {
-            Destroy(other.gameObject);
+            //float counter = 5; 
+            showingDamage = true; 
+            damage.color = new Color();
+            damage.color = Color.red;
+            constraints.velocity = Vector2.zero;
+            damageDoneTime = Time.time + showDamageDuration;
+
+
+
         }
+
+       
+       
+
     }
+    void unShowDamage()
+    {
+        damage.color = Color.white;
+       
+    }
+
+    
 }

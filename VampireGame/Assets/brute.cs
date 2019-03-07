@@ -10,7 +10,7 @@ public class brute : MonoBehaviour {
     public float leftAndRightEdge = 1f;
     public float chanceToChangeDirections = 0.1f;
     public float secondsBetweenFissureattack = 1f;
-
+    
 
 	// Use this for initialization
 	void Start () {
@@ -46,20 +46,32 @@ public class brute : MonoBehaviour {
     void tempFire()
     {
         GameObject attack = Instantiate<GameObject>(fissure);
-        attack.transform.position = transform.position;
+        attack.transform.position = this.transform.position;
+        
+
         Rigidbody2D rigidB = attack.GetComponent<Rigidbody2D>();
+        //rigidB.transform.position = new Vector2(0, -1);
         rigidB.velocity = Vector2.left * fissureSpeed;
-        onCollision();
+
+        
         
     }
 
-    void onCollision()
+    void OnCollisionEnter2D(Collision2D coll)
     {
+        Debug.Log("collided with : " + coll.gameObject);
+        int hit=0;
+
         
-        if (gameObject.CompareTag("Player"))
+        if (coll.gameObject.tag == "Player"&& hit== 3)
         {
-            Destroy(fissure);
+            // Destroy(coll.gameObject);
+           
+            
+            Destroy(this.gameObject);
+
             return;
         }
+        hit++;
     }
 }
