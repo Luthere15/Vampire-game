@@ -72,7 +72,7 @@ public class Controller : MonoBehaviour {
         }
 
 
-        if (other.gameObject.tag == "fissure")
+        if (other.gameObject.tag == "fissure"||other.gameObject.tag=="brute")
         {
             //float counter = 5; 
             showingDamage = true; 
@@ -83,6 +83,11 @@ public class Controller : MonoBehaviour {
 
 
 
+        }
+
+        if(other.gameObject && isjumping==true)
+        {
+            Destroy(other.gameObject);
         }
 
        

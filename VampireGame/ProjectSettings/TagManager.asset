@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - fissure
+  - brute
   layers:
   - Default
   - TransparentFX
