@@ -49,6 +49,8 @@ public class Controller : MonoBehaviour {
             unShowDamage();
         }
 
+        
+
     }
 
     void jump()
@@ -89,7 +91,11 @@ public class Controller : MonoBehaviour {
         {
             Destroy(other.gameObject);
         }
-
+        
+        if(other.gameObject.tag=="fissure")
+        {
+            Destroy(other.gameObject);
+        }
        
        
 

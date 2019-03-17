@@ -72,7 +72,7 @@ public class brute : MonoBehaviour {
             // Destroy(coll.gameObject);
            
             
-            Destroy(fissure.gameObject);
+           // Destroy(fissure.gameObject);
 
             return;
         }
