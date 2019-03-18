@@ -17,12 +17,15 @@ public class Controller : MonoBehaviour {
     private SpriteRenderer damage;
     private Rigidbody2D freeze;
 
+    private bool facingright;
     Rigidbody2D constraints;
 
 
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        facingright = true;
         
         rb = GetComponent<Rigidbody2D>();
 
@@ -37,7 +40,7 @@ public class Controller : MonoBehaviour {
         Vector2 movement = new Vector2(moveHorizontal, 0);
         rb.AddForce(movement);
         //constraints.constraints = RigidbodyConstraints2D.None;
-
+        flip(moveHorizontal);
         jump();
     }
 
@@ -106,5 +109,17 @@ public class Controller : MonoBehaviour {
        
     }
 
+    private void flip(float moveHorizontal)
+    {
+        if ( moveHorizontal> 0 && !facingright|| moveHorizontal < 0 && facingright)
+        {
+            facingright = !facingright;
+
+            Vector3 theScale = transform.localScale;
+
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+    }
     
 }
